@@ -1,0 +1,15 @@
+{
+  "name": "mosquito-report-doc",
+  "license": "MIT",
+  "homepage": "developer.mosquito.report",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}
