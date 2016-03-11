@@ -1,0 +1,43 @@
+<li>
+  <h4><%= name %></h4>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= type %> <%= url %>
+    </div>
+  </div>
+
+  <h5>Parameters</h5>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <%= parameters %>
+    </tbody>
+  </table>
+
+  <h5>Example</h5>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {
+        "email": "test@test.org",
+        "password": "rawpass"
+      }
+    </div>
+  </div>
+
+  <h5>Response</h5>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Status: 200 Success<br>
+      Location: http://api.mosquito.report/auth/email
+    </div>
+    <div class="panel-body">
+      {
+        "token": "..."
+      }
+    </div>
+  </div>
+</li>

@@ -1,0 +1,76 @@
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+
+$brand-primary: #ff5349;
+
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+body {
+  background: #333;
+}
+
+.main {
+  background: #fff;
+  padding-bottom: 100px;
+}
+
+footer {
+  padding: 25px 0;
+  text-align: center;
+  color: #ccc;;
+}
+
+.main-description {
+  margin-top: 15px;
+  padding: 50px 0;
+  background: $brand-primary;
+  color: #fff;
+}
+
+h5 {
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+@media (min-width: $screen-md-min) {
+  .index {
+    float: right;
+  }
+  ol > li > ol > li {
+    position: relative;
+    padding-left: 50px;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      top: 6px;
+    }
+  }
+}
+
+h3, h4 {
+  display: inline-block;
+}
+
+ol {
+  counter-reset: item;
+  padding-left: 0;
+
+  & > li {
+    display: block;
+    position: relative;
+
+    & + li {
+      margin-top: 80px;
+    }
+
+    &:before {
+      content: counters(item, ".") " ";
+      counter-increment: item;
+      font-size: $font-size-h3;
+    }
+
+    & > ol > li:before {
+      font-size: $font-size-h4;
+    }
+  }
+}
