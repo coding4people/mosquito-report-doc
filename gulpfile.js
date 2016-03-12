@@ -4,23 +4,26 @@ var _ = require('lodash');
 var apidoc = require('apidoc');
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
+var inlinesource = require('gulp-inline-source');
 var sass = require('gulp-sass');
 var template = require('gulp-template');
 var through2 = require('through2');
 
-gulp.task('styles', function () {
+gulp.task('styles', function (cb) {
   gulp.src('src/style.scss')
     .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('.tmp'))
+    .on('end', cb);
 });
 
 function loadData() {
   apidoc.createDoc({
     src: '../mosquito-report-api',
-    dest: '.tmp/'
+    dest: '.tmp/api/',
+    silent: true
   });
 
-  return _.chain(require('./.tmp/api_data.json'))
+  return _.chain(require('./.tmp/api/api_data.json'))
     .groupBy('group')
     .toPairs()
     .map(function (endpoint) {
@@ -94,9 +97,13 @@ gulp.task('html', function(endCb) {
         menu: menu
       }))
       .pipe(htmlmin({collapseWhitespace: true}))
-      .pipe(gulp.dest('dist'))
+      .pipe(gulp.dest('.tmp'))
       .on('end', endCb);
   });
 });
 
-gulp.task('default', ['styles', 'html']);
+gulp.task('default', ['html', 'styles'], function () {
+  gulp.src('.tmp/index.html')
+    .pipe(inlinesource())
+    .pipe(gulp.dest('dist'));
+});
