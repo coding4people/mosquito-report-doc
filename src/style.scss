@@ -1,5 +1,3 @@
-@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
-
 $brand-primary: #ff5349;
 
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -47,7 +45,7 @@ h5 {
   .index {
     float: right;
   }
-  ol > li > ol > li {
+  .groups ol > li > ol > li {
     position: relative;
     padding-left: 50px;
 
@@ -63,15 +61,14 @@ h3, h4 {
   display: inline-block;
 }
 
-ol {
+.groups ol {
   counter-reset: item;
   padding-left: 0;
 
   & > li {
     display: block;
-    position: relative;
 
-    & + li {
+    .groups & + li {
       margin-top: 80px;
     }
 
@@ -84,5 +81,28 @@ ol {
     & > ol > li:before {
       font-size: $font-size-h4;
     }
+  }
+}
+
+nav > ol  {
+  padding: 0;
+  color: $gray-lighter;
+
+  a {
+    color: $gray-light;
+  }
+
+  & > li > a {
+    font-weight: bold;
+  }
+
+  @media (min-width: $screen-md-min) {
+    padding: 0 0 0 30px;
+  }
+
+  ol {
+    padding: 0 0 15px 7px;
+    list-style: none;
+    font-weight: normal;
   }
 }

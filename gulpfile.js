@@ -24,16 +24,22 @@ function loadData() {
     .groupBy('group')
     .toPairs()
     .map(function (endpoint) {
-      return _.zipObject(['name', 'endpoints'], endpoint);
+      var group = _.zipObject(['name', 'endpoints'], endpoint);
+      group.title = group.endpoints[0].groupTitle;
+
+      return group;
     })
     .value();
 }
 
 gulp.task('html', function(endCb) {
 
+  var menu = '<ol>';
+
   var groupPromises = [];
 
   loadData().map(function (group) {
+    menu += '<li><a href="#' + group.name + '">' + group.title + '</a><ol>';
 
     var endpointPromises = [];
 
@@ -63,6 +69,8 @@ gulp.task('html', function(endCb) {
             });
         });
       }));
+
+      menu += '<li><a href="#' + endpoint.group + '_' + endpoint.name + '">' + endpoint.title + '</a></li>';
     });
 
     groupPromises.push(new Promise(function (resolve) {
@@ -76,12 +84,16 @@ gulp.task('html', function(endCb) {
           });
       });
     }));
+    menu += '</ol></li>';
   });
 
   Promise.all(groupPromises).then(function (groups) {
     gulp.src('src/index.html')
-      .pipe(template({ groups: groups.join('') }))
-      //.pipe(htmlmin({collapseWhitespace: true}))
+      .pipe(template({
+        groups: groups.join(''),
+        menu: menu
+      }))
+      .pipe(htmlmin({collapseWhitespace: true}))
       .pipe(gulp.dest('dist'))
       .on('end', endCb);
   });
