@@ -21,23 +21,17 @@
   <h5>Example</h5>
   <div class="panel panel-default">
     <div class="panel-body">
-      {
-        "email": "test@test.org",
-        "password": "rawpass"
-      }
+      <pre><%= parameter.examples[0].content %></pre>
     </div>
   </div>
 
   <h5>Response</h5>
   <div class="panel panel-default">
     <div class="panel-heading">
-      Status: 200 Success<br>
-      Location: http://api.mosquito.report/auth/email
+      <%= success.examples[0].content %>
     </div>
     <div class="panel-body">
-      {
-        "token": "..."
-      }
+      <pre><%= success.examples[1].content %></pre>
     </div>
   </div>
 </li>
