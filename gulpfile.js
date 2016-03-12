@@ -37,7 +37,7 @@ function loadData() {
 
 gulp.task('html', function(endCb) {
 
-  var menu = '<ol>';
+  var menu = '';
 
   var groupPromises = [];
 
