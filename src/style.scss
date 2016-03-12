@@ -45,10 +45,64 @@ footer {
   padding: 50px 0;
   background: $brand-primary;
   color: #fff;
+
+  h1 {
+    margin-top: 0;
+  }
+
   a, a:hover, a:focus, a:visited {
     color: #fff;
     text-decoration: underline;
   }
+}
+
+.terminal {
+  margin-top: 40px;
+  height: 300px;
+  overflow: hidden;
+  background: #333;
+  border-radius: 3px;
+
+  @media (min-width: $screen-md-min) {
+    margin-top: 0;
+  }
+}
+
+.terminal-bar {
+  position: relative;
+  height: 22px;
+  background: #d6d6d6;
+
+  & > span {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    background: #bc2150;
+
+    & + span {
+      left: 28px;
+      background: #ca9758;
+
+      & + span {
+        left: 48px;
+        background: #6bac53;
+      }
+    }
+  }
+}
+
+.terminal-window {
+  overflow: auto;
+  box-sizing: border-box;
+  height: 300px - 22px;
+  padding: 5px;
+  font-family: $font-family-monospace;
+  font-size: 80%;
+  color: #fff;
 }
 
 .uri {
