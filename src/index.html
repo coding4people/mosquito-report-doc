@@ -68,7 +68,34 @@
                 <ol>
                   <li>
                     <h3 id="Authentication">Authentication</h3>
-                    <p></p>
+                    <p>In order to interact with non public endpoints, the client must provide an authentication token. The authentication token can be obteined using the following endpoints:
+                      <ul>
+                        <li><a href="#User_PostAuthEmail">Authenticate an user using his email</a></li>
+                        <li><a href="#User_PostAuthFacebook">Authenticate an user using a Facebook token</a></li>
+                      </ul>
+                    </p>
+                    <p>
+                      The authentication token must be provided via the "Authorization" http header. Example:
+                    </p>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <pre>Authorization: Token ZXhhbXBsZXRva2VuNjI4NzMzMWMtYWIwZi00ODMxLWFhMjQtNWUyYzYyZmM2MmYwDQo=</pre>
+                      </div>
+                    </div>
+
+                    <p>If an invalid token was provided then the API will return the following error:</p>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        HTTP/1.1 403 Forbidden
+                      </div>
+                      <div class="panel-body">
+                        <pre>{
+  "status":"error",
+  "message":"Invalid authorization token"
+}</pre>
+                      </div>
+                    </div>
                   </li>
                   <li>
                     <h3 id="Validation">Validation</h3>
