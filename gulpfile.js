@@ -50,20 +50,37 @@ gulp.task('html', function(endCb) {
 
       var parameterPromises = [];
 
-      endpoint.parameter.fields.Parameter.map(function (parameter) {
-        parameterPromises.push(new Promise(function (resolve) {
-          gulp.src('./src/parameter.html')
-            .pipe(template(parameter))
-            .on('data', function (data) {
-              resolve(data.contents.toString());
-            });
-        }));
-      });
+      if (endpoint.parameter) {
+        endpoint.parameter.fields.Parameter.map(function (parameter) {
+          parameterPromises.push(new Promise(function (resolve) {
+            gulp.src('./src/parameter.html')
+              .pipe(template(parameter))
+              .on('data', function (data) {
+                resolve(data.contents.toString());
+              });
+          }));
+        });
+      }
 
       endpointPromises.push(new Promise(function (resolve) {
         Promise.all(parameterPromises).then(function (parameters) {
           endpoint.parameters = parameters.join('');
-          endpoint.type = endpoint.type.toUpperCase();
+
+          if (endpoint.parameters) {
+            endpoint.parameters = '<h4>Parameters</h4><table class="table"><thead><th>Name</th><th>Type</th><th>Description</th></thead><tbody>' + endpoint.parameters + '</tbody></table>';
+          }
+
+          if (parameters.examples) {
+            endpoint.example = '<h4>Example</h4><div class="panel panel-default"><div class="panel-body"><pre>' + parameter.examples[0].content + '</pre></div></div>';
+          } else {
+            endpoint.example = '';
+          }
+
+          if (endpoint.success.examples[1]) {
+            endpoint.response = '<div class="panel-body">' + endpoint.success.examples[1].content + '</div>';
+          } else {
+            endpoint.response = '';
+          }
 
           gulp.src('./src/endpoint.html')
             .pipe(template(endpoint))
