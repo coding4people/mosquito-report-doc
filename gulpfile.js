@@ -77,7 +77,7 @@ gulp.task('html', function(endCb) {
           }
 
           if (endpoint.success.examples[1]) {
-            endpoint.response = '<div class="panel-body">' + endpoint.success.examples[1].content + '</div>';
+            endpoint.response = '<pre class="panel-body">' + endpoint.success.examples[1].content + '</pre>';
           } else {
             endpoint.response = '';
           }
