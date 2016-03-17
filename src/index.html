@@ -46,7 +46,6 @@
                   <ol>
                     <li><a href="#Authentication">Authentication</a></li>
                     <li><a href="#Validation">Validation</a></li>
-                    <li><a href="#Errors">Errors</a></li>
                   </ol>
                 </li>
                 <%= menu %>
@@ -99,11 +98,30 @@
                   </li>
                   <li>
                     <h3 id="Validation">Validation</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis fringilla magna, sed varius eros laoreet non. Donec non libero vehicula, sagittis metus eget, congue lectus. Aliquam erat volutpat. Nunc ex massa, placerat nec enim vel, mattis tincidunt eros.</p>
-                  </li>
-                  <li>
-                    <h3 id="Errors">Errors</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis fringilla magna, sed varius eros laoreet non. Donec non libero vehicula, sagittis metus eget, congue lectus. Aliquam erat volutpat. Nunc ex massa, placerat nec enim vel, mattis tincidunt eros.</p>
+                    <p>Response for invalid json:</p>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        HTTP/1.1 400 Bad Request
+                      </div>
+                      <div class="panel-body">
+                        <pre>{
+  "status":"error",
+  "message":"Invalid json"
+}</pre>
+                      </div>
+                    </div>
+                    <p>Response for invalid json parameters:</p>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        HTTP/1.1 400 Bad Request
+                      </div>
+                      <div class="panel-body">
+                        <pre>{
+  "status":"error",
+  "message":"Error mapping json"
+}</pre>
+                      </div>
+                    </div>
                   </li>
                 </ol>
               </li>
